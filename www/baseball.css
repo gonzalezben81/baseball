@@ -1,0 +1,116 @@
+/*Search Button Styling*/
+#search_button{
+  	/* background styles */
+	position: relative;
+	display: inline-block;
+	padding: 10px 25px;
+	background-color: silver; /*for compatibility with older browsers*/
+	background-image: linear-gradient(silver,#BEC0C2);
+  border-radius: 12px;
+	/* text styles */
+	text-decoration: none;
+	color: black;
+	font-size: 20px;
+	font-family: sans-serif;
+	font-weight: 100;
+  
+}
+#search_button:after{
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: calc(100% - 4px);
+	height: 50%;
+	background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+}
+
+/*Beginning of Header Styling*/
+header {
+    display: none;
+    background-color: #112e52;
+    background-image: url(header-image.jpg);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.7) 0 0 30px;
+  }
+@media screen {
+    header {
+      display: block;
+    }
+  }
+header h3 {
+    font-family: Lobster;
+    font-style: oblique;
+    font-size: 65px;
+    padding: 100px 10px 10px 10px;
+    margin: 0;
+    text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+  }
+header p {
+    margin: 0;
+    padding: 0 100px 80px 10px;
+  }
+header p a, header p a:active, header p a:visited {
+    color: white;
+  }
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+/*Text Input Styling*/
+input[type=text] {
+  border-radius: 12px;
+  width: 35%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+/*Column Styling*/
+.column {
+  float: left;
+  width: 33%;
+  padding: 10px;
+}
+
+/*Divider Styling by ID for Batting and Pitching Tables div element*/
+#bat {
+display: none;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  
+}
+
+/*h4 Styling*/
+h4 {
+  font-family: Lobster;
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+/*Github Ribbon*/
+.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}

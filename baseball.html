@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--Head Content Needed to work with R objects in the html-->
+    {{ headContent() }}
+  
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--Link to the baseball.css file in the www folder-->
+<link type="text/css" rel="stylesheet" href="baseball.css"/>
+<!--Link to the baseball.js file in the www folder-->
+<script src="baseball.js"></script>
+</head>
+<!--Beginning of the body of the baseball.html page-->
+<body>
+<a href="https://github.com/gonzalezben81"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+
+<center>
+  <header role="banner">
+    <h3 class="usa-display">Major League Baseball Statistics</h3>
+      <br>
+      <br>
+       by <a href="https://www.rgonzo.us/">Ben Gonzalez</a></p>
+       <br>
+   <h5 style="text-align: center;">This database is copyright 1996-2018 by <a href="http://www.seanlahman.com/baseball-archive/statistics/">Sean Lahman</a></h5>
+       <br>
+ </header>
+</center>
+<hr>
+<center>
+    <section id="college-search">
+      <div class="usa-grid">
+        <div class="usa-width-one-whole">
+          <form class="usa-search usa-search-big" onsubmit="return false;">
+            <div role="search">
+              <label class="usa-sr-only" for="search-field-big"></label>
+              <input id="search" type="text" name="search" placeholder="Enter Player Name e.g. Babe Ruth, Ozzie Smith"/>
+              <button id="search_button" onclick="myFunction2()" type="button" class="usa-search-submit action-button">
+                <!--<span class="usa-search-submit-text">Search</span>-->
+              <i class="fa fa-search"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+</center>
+<!--Three Column Layout-->
+<hr>
+<section>
+<!--Homerun Plot Information Output-->
+<div class="row">
+  <div class="column">
+    <!--<img src="baseball.jpg" alt="Baseball" style="max-width: 100%; max-height: 100%;">-->
+    {{ plotOutput("plot") }}
+</div>
+<!--Second Column Baseball Player Information Output-->
+<div class="column">
+        <h4>Player Name</h4>
+        {{ textOutput("player_name", inline = TRUE) }}
+        <div>
+         <h4>City</h4>
+          {{ textOutput("player_city", inline = TRUE) }}
+        </div>
+        <div>
+          <h4>State</h4>
+           {{ textOutput("player_state", inline = TRUE) }}
+        </div>
+        <div>
+          <h4>Country: </h4> 
+           {{ textOutput("player_country", inline = TRUE) }}
+        </div>
+        <div>
+          <h4>Debut: </h4> 
+           {{ textOutput("player_debut", inline = TRUE) }}
+        </div>
+</div>
+<!--Third Column Baseball Player Information Output-->
+<div class="column">
+        <h4>Weight</h4>
+          {{ textOutput("player_weight", inline = TRUE) }}
+      <div>
+        <h4>Height</h4>
+            {{ textOutput("player_height", inline = TRUE) }}
+      </div>
+      <div>
+        <h4>Throws</h4>
+          {{ textOutput("player_throws", inline = TRUE) }}
+      </div>
+      <div>
+        <h4>Bats: </h4> 
+          {{ textOutput("player_bats", inline = TRUE) }}
+      </div>
+      <div>
+         <h4>Final Game: </h4> 
+          {{ textOutput("player_finalGame", inline = TRUE) }}
+      </div>
+</div>
+</div>
+<br>
+<br>
+<hr>
+<!--Batting Statistics Output-->
+<div id="bat">
+<div>
+ <center>
+  <h3>Batting Statistics: {{ textOutput("player_name_two", inline = TRUE) }}</h3>
+ </center>
+ <hr>
+<!--Batting Statistics Table Double Curly Braces allow interaction with R Output Objects-->
+ {{DT::DTOutput("battingStats")}}  
+</div>
+<!--Pitching Statistics Output-->
+<div>
+ <center>
+  <h3>Pitching Statistics: {{ textOutput("player_name_three", inline = TRUE) }}</h3>
+ </center>
+  <hr>
+ <!--Pitching Statistics Output-->
+ {{ uiOutput("pitching") }} 
+ <!--{{DT::DTOutput("pitchingStats")}} --> 
+</div>
+</div>
+</section>
+<hr>
+<!--Information on how to get a hold of me-->
+<div class="container" id="mystuff">
+<ul class="nav" id="mylist">
+  <center>
+    <div class="col-sm-4">
+  <li id="mylist"><a href="mailto:gonzalezben81@gmail.com" class=" btn btn-primary">Contact Me</a></li>
+    </div>
+    <div class="col-sm-4">
+  <li id="mylist"><a href="https://github.com/gonzalezben81"><i style="font-size:48px" class="fa">&#xf09b;</i></a></li> 
+    </div>
+    <div class="col-sm-4">
+  <li id="mylist"><a href="https://m.do.co/c/b72d3479beb8" class=" btn btn-primary">$10 Digital Ocean Credit</a></li>
+    </div>
+  </center>
+</ul>
+</div>
+<hr>
+</br>
+</br>
+    </body>
+<!--End of Document-->
+    </html>
