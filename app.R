@@ -19,7 +19,9 @@ ui <- fluidPage(
 
 # Define server logic to interact with the baseball.html file
 server <- function(input, output) {
-   
+  
+  
+
   ###Get the search results from the baseball dataset
   search_results<- eventReactive(input$search_button,{
     
@@ -104,10 +106,10 @@ server <- function(input, output) {
   ##Creates the interactive table returns the player's batting statistics
   batting_results <- eventReactive(input$search_button,{
     
-    res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
-    res<- dbFetch(res)
+    # res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
+    # res<- dbFetch(res)
 
-    playerone <- res$playerID
+    playerone <- search_results()$playerID
     # You can fetch all results:
     Batting <- dbSendQuery(con, paste0("SELECT * FROM batting"))
     Batting <- dbFetch(Batting)
@@ -126,13 +128,13 @@ server <- function(input, output) {
 
   ###Renders the pitching statistics table that the user can search
   pitching_results <- eventReactive(input$search_button,{
+    # 
+    # res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
+    # res<- dbFetch(res)
+    # 
+    # # playerinfo <- subset(Master,NAMES == input$name)
     
-    res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
-    res<- dbFetch(res)
-    
-    # playerinfo <- subset(Master,NAMES == input$name)
-    
-    player <- res$playerID
+    player <- search_results()$playerID
     
     # You can fetch all results:
     Pitching <- dbSendQuery(con, paste0("SELECT * FROM pitching"))
@@ -162,7 +164,6 @@ server <- function(input, output) {
   })
   })
 
-  
   # Renders a DT table of the players batting statistics
   observeEvent(input$search_button,{output$battingStats <- DT::renderDataTable({
     
@@ -170,6 +171,7 @@ server <- function(input, output) {
     datatable(batting_results())
   })
   })
+  
   # Renders a DT table of the players pitching statistics
   observeEvent(input$search_button,{
   output$pitching <-  renderUI({
@@ -211,13 +213,13 @@ server <- function(input, output) {
       byear <- ifelse(birthmonth <= 6, birthyear, birthyear + 1)
       list(name.code=name.code, byear=byear)}
     
-    
+    ###Player One
     playerone <- getinfo(input$search)
-    
+    ###Player Two
     playertwo <- getinfo("Babe Ruth")
-    
+    ###Player Three
     playerthree <- getinfo("Hank Aaron")
-    
+    ###Player Four
     playerfour <- getinfo("Barry Bonds")
     
     # You can fetch all results:

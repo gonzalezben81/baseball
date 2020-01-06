@@ -3,7 +3,6 @@
 <head>
 <!--Head Content Needed to work with R objects in the html-->
     {{ headContent() }}
-  
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--Link to the baseball.css file in the www folder-->
@@ -44,9 +43,15 @@
       </div>
     </section>
 </center>
+    <section id="college-search-results" data-display-if="output.app_mode === 'search'">
+      <div class="usa-grid">
+        <div class="usa-width-one-whole">
+          {{ uiOutput("search_results") }}
+        </div>
+      </div>
+    </section>
 <!--Three Column Layout-->
 <hr>
-<section>
 <!--Homerun Plot Information Output-->
 <div class="row">
   <div class="column">
@@ -96,8 +101,6 @@
       </div>
 </div>
 </div>
-<br>
-<br>
 <hr>
 <!--Batting Statistics Output-->
 <div id="bat">
@@ -110,17 +113,18 @@
  {{DT::DTOutput("battingStats")}}  
 </div>
 <!--Pitching Statistics Output-->
-<div>
+<div margin: auto>
  <center>
   <h3>Pitching Statistics: {{ textOutput("player_name_three", inline = TRUE) }}</h3>
  </center>
   <hr>
  <!--Pitching Statistics Output-->
+ <div margin: auto>
  {{ uiOutput("pitching") }} 
  <!--{{DT::DTOutput("pitchingStats")}} --> 
+ </div>
 </div>
 </div>
-</section>
 <hr>
 <!--Information on how to get a hold of me-->
 <div class="container" id="mystuff">
