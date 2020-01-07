@@ -6,13 +6,17 @@
     //});
 
 
-$(document).on('shiny:connected', function(event) {
-  alert('Welcome to the Major League Baseball Statistics App');
-});
+//$(document).on('shiny:connected', function(event) {
+  //alert('Welcome to the Major League Baseball Statistics App');
+//});
 
-$(document).on('shiny:connected', function(event) {
+//window.onload = function(){
+  //document.getElementById("search").value = "Babe Ruth";
+//};
+
+$(document).on('shiny:updateinput', function(event) {
   if (event.name === 'search') {
-    event.value = "Babe Ruth";
+    event.value =="Babe Ruth";
   }
 });
 
@@ -29,7 +33,7 @@ function myFunction() {
 //Show Baseball and Pitching Table Outputs once Search Button is Clicked
 function myFunction2() {
   document.getElementById("bat").style.display = "block";
-  document.getElementById("batters").style.display = "block";
+  document.getElementById("battle").style.display = "block";
 //  var x = document.getElementById("bat");
   //  x.style.display = "block";
 //var y = document.getElementById("batters");
