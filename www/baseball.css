@@ -41,7 +41,7 @@ header {
       display: block;
     }
   }
-header h3 {
+header h2 {
     font-family: Lobster;
     font-style: oblique;
     font-size: 65px;
@@ -78,6 +78,7 @@ input[type=text] {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
+  background-color: #f1f1f1;
 }
 
 /*Column Styling*/
@@ -92,6 +93,26 @@ input[type=text] {
 display: none;
 }
 
+
+#stuff {
+display: none;
+}
+/*Divider Styling by ID for Batting and Pitching Tables div element*/
+#batters {
+display: none;
+}
+
+/*Divider Styling by ID for Batting and Pitching Tables div element*/
+#battle {
+display: none;
+}
+
+/*Divider Styling by ID for Batting and Pitching Tables div element*/
+#bat3 {
+display: none;
+}
+
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -100,10 +121,18 @@ display: none;
   
 }
 
+#hrline {
+  display: none;
+}
+
+h3 {
+  display: none;
+}
+
 /*h4 Styling*/
 h4 {
   font-family: Lobster;
-  display: block;
+  display: none;
   font-size: 1.5em;
   margin-top: 0.83em;
   margin-bottom: 0.83em;
@@ -111,6 +140,9 @@ h4 {
   margin-right: 0;
   font-weight: bold;
 }
+
+#text {display:none;color:red}
+
 
 /*Github Ribbon*/
 .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}

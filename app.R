@@ -19,7 +19,11 @@ ui <- fluidPage(
 
 # Define server logic to interact with the baseball.html file
 server <- function(input, output) {
+<<<<<<< HEAD
    
+=======
+  
+>>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
   ###Get the search results from the baseball dataset
   search_results<- eventReactive(input$search_button,{
     
@@ -27,9 +31,9 @@ server <- function(input, output) {
     res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
     dbFetch(res)
     
-
   })
   
+<<<<<<< HEAD
   
   ###Output the player name the first time
   output$player_name <- renderText({
@@ -49,12 +53,37 @@ server <- function(input, output) {
   })
   ###Output the Players State
   output$player_state <- renderText({
+=======
+  ###Output the player name the first time
+  observeEvent(input$search_button,{output$player_name <- renderText({
+    search_results()$NAMES
+  })})
+  ###Output the player name a second time
+  observeEvent(input$search_button,{output$player_name_two <- renderText({
+    search_results()$NAMES
+  })})
+  ###Output the Player name a third time
+  observeEvent(input$search_button,{output$player_name_three <- renderText({
+    search_results()$NAMES
+  })})
+  ###Output the Player name a fourth time
+  observeEvent(input$search_button,{output$player_name_four <- renderText({
+    search_results()$NAMES
+  })})
+  ###Output the players birth city
+  observeEvent(input$search_button,{output$player_city <- renderText({
+    search_results()$birthCity
+  })})
+  ###Output the Players State
+  observeEvent(input$search_button,{output$player_state <- renderText({
+>>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
     state<- search_results()$birthState
     if(is.na(state)){
       return("Unknown")
     }else{
       return(state)
     }
+<<<<<<< HEAD
   })
   ###Output the Players Country
   output$player_country <- renderText({
@@ -62,6 +91,15 @@ server <- function(input, output) {
   })
   ###Output the Players batting stance
   output$player_bats <- renderText({
+=======
+  })})
+  ###Output the Players Country
+  observeEvent(input$search_button,{output$player_country <- renderText({
+    search_results()$birthCountry
+  })})
+  ###Output the Players batting stance
+  observeEvent(input$search_button,{output$player_bats <- renderText({
+>>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
     
     batting<- search_results()$bats
     if(batting=="R"){
@@ -71,9 +109,15 @@ server <- function(input, output) {
     }else{
       return("Both")
     }
+<<<<<<< HEAD
   })
   ###Output the Players throwing arm
   output$player_throws <- renderText({
+=======
+  })})
+  ###Output the Players throwing arm
+  observeEvent(input$search_button,{output$player_throws <- renderText({
+>>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
     throwing<- search_results()$throws
     if(throwing=="R"){
       return("Right")
@@ -82,6 +126,7 @@ server <- function(input, output) {
     }else{
       return("Both")
     }
+<<<<<<< HEAD
   })
  ###Output the Players Height
   output$player_height <- renderText({
@@ -93,21 +138,39 @@ server <- function(input, output) {
   })
  ###Output the players final game
   output$player_finalGame <- renderText({
+=======
+  })})
+ ###Output the Players Height
+  observeEvent(input$search_button,{output$player_height <- renderText({
+    search_results()$height
+  })})
+  ###Output when the player debuted
+  observeEvent(input$search_button,{output$player_debut <- renderText({
+    search_results()$debut
+  })})
+ ###Output the players final game
+  observeEvent(input$search_button,{output$player_finalGame <- renderText({
+>>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
     search_results()$finalGame
-  })
-  output$player_weight <- renderText({
+  })})
+  observeEvent(input$search_button,{output$player_weight <- renderText({
     weight<- search_results()$weight
     return(paste0(weight," lbs"))
-  })
+  })})
   
   ###Batting Statistics
   ##Creates the interactive table returns the player's batting statistics
   batting_results <- eventReactive(input$search_button,{
     
+<<<<<<< HEAD
     res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
     res<- dbFetch(res)
+=======
+    # res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
+    # res<- dbFetch(res)
+>>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
 
-    playerone <- res$playerID
+    playerone <- search_results()$playerID
     # You can fetch all results:
     Batting <- dbSendQuery(con, paste0("SELECT * FROM batting"))
     Batting <- dbFetch(Batting)
@@ -126,13 +189,13 @@ server <- function(input, output) {
 
   ###Renders the pitching statistics table that the user can search
   pitching_results <- eventReactive(input$search_button,{
+    # 
+    # res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
+    # res<- dbFetch(res)
+    # 
+    # # playerinfo <- subset(Master,NAMES == input$name)
     
-    res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
-    res<- dbFetch(res)
-    
-    # playerinfo <- subset(Master,NAMES == input$name)
-    
-    player <- res$playerID
+    player <- search_results()$playerID
     
     # You can fetch all results:
     Pitching <- dbSendQuery(con, paste0("SELECT * FROM pitching"))
@@ -162,7 +225,10 @@ server <- function(input, output) {
   })
   })
 
+<<<<<<< HEAD
   
+=======
+>>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
   # Renders a DT table of the players batting statistics
   observeEvent(input$search_button,{output$battingStats <- DT::renderDataTable({
     
@@ -170,6 +236,10 @@ server <- function(input, output) {
     datatable(batting_results())
   })
   })
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
   # Renders a DT table of the players pitching statistics
   observeEvent(input$search_button,{
   output$pitching <-  renderUI({
@@ -177,6 +247,9 @@ server <- function(input, output) {
     if(nrow(pitching_results())==0){
     output$pitching <-  renderText(paste0(input$search," has no pitching statistics"))
     }else{
+      
+    downloadButton(outputId = "button",label = "Download")
+    br()
     output$pitchingStats <- DT::renderDataTable({
     # data.frame(search_results())
     print(pitching_results())
@@ -188,8 +261,24 @@ server <- function(input, output) {
   })
   })
   
+<<<<<<< HEAD
+=======
+  
+  # plot_data<- eventReactive(input$search_button,{
+  # 
+  #   res <- dbSendQuery(con, paste0("SELECT * FROM master "))
+  #   res<- dbFetch(res)
+  #   
+  # })
+
+>>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
   ###Outputs the players homeruns over their lifespan
   observeEvent(input$search_button,{output$plot <- renderPlot({
+    
+    res <- dbSendQuery(con, paste0("SELECT * FROM master "))
+    res<- dbFetch(res)
+    
+    req(input$search_button)
     
     withProgress(message = 'Creating Home Run Comparison Graph',
                  value = 0, {
@@ -198,9 +287,16 @@ server <- function(input, output) {
                      Sys.sleep(0.25)
                    }
                  },env = parent.frame(n=1))
+<<<<<<< HEAD
     # res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
     res <- dbSendQuery(con, paste0("SELECT * FROM master "))
     res<- dbFetch(res)
+=======
+
+    
+    # res <- dbSendQuery(con, paste0("SELECT * FROM master "))
+    # res<- dbFetch(res)
+>>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
     
     getinfo <- function(name){
       playerline <- subset(res,NAMES==name)
@@ -211,13 +307,13 @@ server <- function(input, output) {
       byear <- ifelse(birthmonth <= 6, birthyear, birthyear + 1)
       list(name.code=name.code, byear=byear)}
     
-    
+    ###Player One
     playerone <- getinfo(input$search)
-    
+    ###Player Two
     playertwo <- getinfo("Babe Ruth")
-    
+    ###Player Three
     playerthree <- getinfo("Hank Aaron")
-    
+    ###Player Four
     playerfour <- getinfo("Barry Bonds")
     
     # You can fetch all results:
@@ -246,6 +342,29 @@ server <- function(input, output) {
     legend(20, 700, legend=c(input$search, "Babe Ruth", "Hank Aaron", "Barry Bonds"),
            lty=1 : 4, lwd=2,col=c("blue","green","red","orange"))
   })})
+  
+  
+  
+  ###Download Data about Baseball Player
+  output$button_batting <- downloadHandler(
+    filename = function() {
+      paste(input$search, "batting.csv", sep = " ")
+    },
+    content = function(file) {
+      write.csv(batting_results(), file, row.names = FALSE,sep = "\t")
+    }
+  )
+  
+  
+  ###Download Data about Baseball Player
+  output$button_pitching <- downloadHandler(
+    filename = function() {
+      paste(input$search, "pitching.csv", sep = " ")
+    },
+    content = function(file) {
+      write.csv(pitching_results(), file, row.names = FALSE,sep = "\t")
+    }
+  )
   
 }
 
