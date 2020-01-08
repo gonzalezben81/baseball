@@ -41,7 +41,7 @@ header {
       display: block;
     }
   }
-header h3 {
+header h2 {
     font-family: Lobster;
     font-style: oblique;
     font-size: 65px;
@@ -93,6 +93,10 @@ input[type=text] {
 display: none;
 }
 
+
+#stuff {
+display: none;
+}
 /*Divider Styling by ID for Batting and Pitching Tables div element*/
 #batters {
 display: none;
@@ -117,10 +121,18 @@ display: none;
   
 }
 
+#hrline {
+  display: none;
+}
+
+h3 {
+  display: none;
+}
+
 /*h4 Styling*/
 h4 {
   font-family: Lobster;
-  display: block;
+  display: none;
   font-size: 1.5em;
   margin-top: 0.83em;
   margin-bottom: 0.83em;

@@ -13,7 +13,33 @@
 //window.onload = function(){
   //document.getElementById("search").value = "Babe Ruth";
 //};
+$(document).ready(function(){
+$("#search_button").click(function(){
+    $("#stuff").show();
+    $("hr").show();
+    $("h3").show();
+    $("h4").show();
+  });
+});
 
+//$(document).ready(function(){
+//$("#search_button").click(function(){
+  //  $("h4").show();
+ //});
+//});
+
+//$(document).ready(function(){
+//$("#search_button").click(function(){
+  //  $("hr").show();
+ //});
+//});
+
+
+//$(document).ready(function(){
+//$("#search_button").click(function(){
+  //  $("h3").show();
+// });
+//});
 $(document).on('shiny:updateinput', function(event) {
   if (event.name === 'search') {
     event.value =="Babe Ruth";
@@ -31,15 +57,15 @@ function myFunction() {
 }
 
 //Show Baseball and Pitching Table Outputs once Search Button is Clicked
-function myFunction2() {
-  document.getElementById("bat").style.display = "block";
-  document.getElementById("battle").style.display = "block";
+//function myFunction2() {
+  //document.getElementById("bat").style.display = "block";
+  //document.getElementById("battle").style.display = "block";
 //  var x = document.getElementById("bat");
   //  x.style.display = "block";
 //var y = document.getElementById("batters");
   //  y.style.display = "block";
 
-}
+//}
 
 function autocomplete() {
     var availableTags = [

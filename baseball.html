@@ -16,7 +16,7 @@
 
 <center>
   <header role="banner">
-    <h3 class="usa-display">Major League Baseball Statistics</h3>
+    <h2 class="usa-display">Major League Baseball Statistics</h2>
       <br>
       <br>
        by <a href="https://www.rgonzo.us/">Ben Gonzalez</a></p>
@@ -51,7 +51,7 @@
       </div>
     </section>
 <!--Three Column Layout-->
-<hr>
+<hr id="hrline">
 <!--Homerun Plot Information Output-->
 <div class="row" >
   <div class="column">
@@ -101,14 +101,15 @@
       </div>
 </div>
 </div>
-<hr>
+<hr id="hrline">
 <!--Batting Statistics Output-->
-<div id="bat">
+<!--<div id="bat">-->
+<div>
 <div>
  <center>
   <h3>Batting Statistics: {{ textOutput("player_name_two", inline = TRUE) }}</h3>
  </center>
- <hr>
+ <hr id="hrline">
 <!--Batting Statistics Table Double Curly Braces allow interaction with R Output Objects-->
  {{DT::DTOutput("battingStats")}}  
 </div>
@@ -117,7 +118,7 @@
  <center>
   <h3>Pitching Statistics: {{ textOutput("player_name_three", inline = TRUE) }}</h3>
  </center>
-  <hr>
+  <hr id="hrline">
  <!--Pitching Statistics Output-->
  <div margin: auto>
  {{ uiOutput("pitching") }} 
