@@ -19,7 +19,8 @@ ui <- fluidPage(
 
 # Define server logic to interact with the baseball.html file
 server <- function(input, output) {
-  
+
+
   ###Get the search results from the baseball dataset
   search_results<- eventReactive(input$search_button,{
     
@@ -57,7 +58,8 @@ server <- function(input, output) {
     }else{
       return(state)
     }
-  })})
+  })
+
   ###Output the Players Country
   observeEvent(input$search_button,{output$player_country <- renderText({
     search_results()$birthCountry
@@ -73,6 +75,8 @@ server <- function(input, output) {
     }else{
       return("Both")
     }
+  })
+
   })})
   ###Output the Players throwing arm
   observeEvent(input$search_button,{output$player_throws <- renderText({
@@ -105,9 +109,12 @@ server <- function(input, output) {
   ###Batting Statistics
   ##Creates the interactive table returns the player's batting statistics
   batting_results <- eventReactive(input$search_button,{
-    
+
+    res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
+    res<- dbFetch(res)
     # res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
     # res<- dbFetch(res)
+
 
     playerone <- search_results()$playerID
     # You can fetch all results:
@@ -171,6 +178,7 @@ server <- function(input, output) {
     datatable(batting_results())
   })
   })
+
   
   # Renders a DT table of the players pitching statistics
   observeEvent(input$search_button,{
@@ -193,7 +201,7 @@ server <- function(input, output) {
   })
   })
   
-  
+
   # plot_data<- eventReactive(input$search_button,{
   # 
   #   res <- dbSendQuery(con, paste0("SELECT * FROM master "))
@@ -216,6 +224,9 @@ server <- function(input, output) {
                      Sys.sleep(0.25)
                    }
                  },env = parent.frame(n=1))
+    # res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
+    res <- dbSendQuery(con, paste0("SELECT * FROM master "))
+    res<- dbFetch(res)
 
     
     # res <- dbSendQuery(con, paste0("SELECT * FROM master "))
@@ -267,6 +278,29 @@ server <- function(input, output) {
   })})
   
   
+  # 
+  # observeEvent(input$search_button,{output$map <- renderLeaflet({
+  #   
+  #   # results <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
+  #   # dbFetch(results)
+  #   
+  #   res <- dbSendQuery(con, paste0("SELECT lat,lng FROM uscities where city = '",search_results()$birthCity,"' AND state_id ='",search_results()$birthState,"'"))
+  #   res<- dbFetch(res)
+  #   
+  #   res$lat
+  #   res$lng
+  #   
+  #   # if(is.na(res$lat)||is.na(res$lng)){
+  #   #   leaflet() %>% 
+  #   #     setView(lng = 42.7006, lat = 74.9243,zoom = 10)%>%
+  #   #     addTiles()
+  #   # }else{
+  #   leaflet(res) %>% 
+  #     setView(lng = res$lng, lat = res$lat,zoom = 10)%>%
+  #     addTiles()
+  #     # }
+  # })})
+  # 
   
   ###Download Data about Baseball Player
   output$button_batting <- downloadHandler(

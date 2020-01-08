@@ -15,7 +15,10 @@
 //};
 $(document).ready(function(){
 $("#search_button").click(function(){
-    $("#stuff,hr,h3,h4").show();
+    $("#stuff").show();
+    $("hr").show();
+    $("h3").show();
+    $("h4").show(2000);
   });
 });
 
@@ -49,7 +52,6 @@ $(document).ready(function(){
       source: availableTags
     });
   });
-});
 
 //$(document).ready(function(){
 //$("#search_button").click(function(){
