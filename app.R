@@ -20,9 +20,7 @@ ui <- fluidPage(
 # Define server logic to interact with the baseball.html file
 server <- function(input, output) {
    
-  
-  rv <- reactiveValues(app_mode = "search")
-    
+  ###Get the search results from the baseball dataset
   search_results<- eventReactive(input$search_button,{
     
     # You can fetch all results:
@@ -33,22 +31,23 @@ server <- function(input, output) {
   })
   
   
-  
+  ###Output the player name the first time
   output$player_name <- renderText({
     search_results()$NAMES
   })
-  
+  ###Output the player name a second time
   output$player_name_two <- renderText({
     search_results()$NAMES
   })
-  
+  ###Output the Player name a third time
   output$player_name_three <- renderText({
     search_results()$NAMES
   })
+  ###Output the players birth city
   output$player_city <- renderText({
     search_results()$birthCity
   })
-  
+  ###Output the Players State
   output$player_state <- renderText({
     state<- search_results()$birthState
     if(is.na(state)){
@@ -57,11 +56,11 @@ server <- function(input, output) {
       return(state)
     }
   })
-  
+  ###Output the Players Country
   output$player_country <- renderText({
     search_results()$birthCountry
   })
-  
+  ###Output the Players batting stance
   output$player_bats <- renderText({
     
     batting<- search_results()$bats
@@ -73,7 +72,7 @@ server <- function(input, output) {
       return("Both")
     }
   })
-
+  ###Output the Players throwing arm
   output$player_throws <- renderText({
     throwing<- search_results()$throws
     if(throwing=="R"){
@@ -84,16 +83,15 @@ server <- function(input, output) {
       return("Both")
     }
   })
-
+ ###Output the Players Height
   output$player_height <- renderText({
     search_results()$height
   })
-  
+  ###Output when the player debuted
   output$player_debut <- renderText({
     search_results()$debut
   })
-
-  
+ ###Output the players final game
   output$player_finalGame <- renderText({
     search_results()$finalGame
   })
@@ -105,7 +103,6 @@ server <- function(input, output) {
   ###Batting Statistics
   ##Creates the interactive table returns the player's batting statistics
   batting_results <- eventReactive(input$search_button,{
-    
     
     res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
     res<- dbFetch(res)
@@ -166,15 +163,14 @@ server <- function(input, output) {
   })
 
   
-  # Generate an HTML table view of the head of the data ----
+  # Renders a DT table of the players batting statistics
   observeEvent(input$search_button,{output$battingStats <- DT::renderDataTable({
     
     # data.frame(search_results())
     datatable(batting_results())
   })
   })
-  
-  # Generate an DT table that has Pitching Statistics if no statistics return data saying so
+  # Renders a DT table of the players pitching statistics
   observeEvent(input$search_button,{
   output$pitching <-  renderUI({
     tagList(
@@ -182,7 +178,6 @@ server <- function(input, output) {
     output$pitching <-  renderText(paste0(input$search," has no pitching statistics"))
     }else{
     output$pitchingStats <- DT::renderDataTable({
-    
     # data.frame(search_results())
     print(pitching_results())
     datatable(pitching_results())
@@ -193,7 +188,7 @@ server <- function(input, output) {
   })
   })
   
-  
+  ###Outputs the players homeruns over their lifespan
   observeEvent(input$search_button,{output$plot <- renderPlot({
     
     withProgress(message = 'Creating Home Run Comparison Graph',
@@ -203,7 +198,8 @@ server <- function(input, output) {
                      Sys.sleep(0.25)
                    }
                  },env = parent.frame(n=1))
-    res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
+    # res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
+    res <- dbSendQuery(con, paste0("SELECT * FROM master "))
     res<- dbFetch(res)
     
     getinfo <- function(name){
@@ -231,6 +227,7 @@ server <- function(input, output) {
     playeronedata$Age <- playeronedata$yearID - playerone$byear
     
     playertwodata <- subset(Batting, playerID == playertwo$name.code)
+    print(playertwodata)
     playertwodata$Age <- playertwodata$yearID - playertwo$byear
     
     playerthreedata <- subset(Batting, playerID == playerthree$name.code)
@@ -243,15 +240,11 @@ server <- function(input, output) {
     with(playeronedata, plot(Age, cumsum(HR), type="l", lty=3, lwd=2,
                              xlab="Age", ylab="Career Home Runs",
                              xlim=c(18, 45), ylim=c(0, 800),col = "blue",main = input$search))
-    #with(playertwodata, lines(Age, cumsum(HR), lty=2, lwd=2,col="green"))
-    #with(playerthreedata, lines(Age, cumsum(HR), lty=1, lwd=2,col ="red"))
-    #with(playerfourdata, lines(Age, cumsum(HR), lty=4, lwd=2,col="orange"))
-    # legend(20, 700, legend=c(playerone,
-    #                          #, playertwo$NAMES, playerthree$NAMES, playerfour$NAMES),
-    #        lty=1 : 4, lwd=2,col=c("blue")
-    #                               #,"green","red","orange")
-    #        )
-    # )
+    with(playertwodata, lines(Age, cumsum(HR), lty=2, lwd=2,col="green"))
+    with(playerthreedata, lines(Age, cumsum(HR), lty=1, lwd=2,col ="red"))
+    with(playerfourdata, lines(Age, cumsum(HR), lty=4, lwd=2,col="orange"))
+    legend(20, 700, legend=c(input$search, "Babe Ruth", "Hank Aaron", "Barry Bonds"),
+           lty=1 : 4, lwd=2,col=c("blue","green","red","orange"))
   })})
   
 }
