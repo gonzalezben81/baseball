@@ -15,10 +15,39 @@
 //};
 $(document).ready(function(){
 $("#search_button").click(function(){
-    $("#stuff").show();
-    $("hr").show();
-    $("h3").show();
-    $("h4").show();
+    $("#stuff,hr,h3,h4").show();
+  });
+});
+
+
+$(document).ready(function(){
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#search").autocomplete({
+      source: availableTags
+    });
   });
 });
 

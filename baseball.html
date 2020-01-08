@@ -54,12 +54,12 @@
 <hr id="hrline">
 <!--Homerun Plot Information Output-->
 <div class="row" >
-  <div class="column">
+  <div class="column" id="stuff">
     <!--<img src="baseball.jpg" alt="Baseball" style="max-width: 100%; max-height: 100%;">-->
     {{ plotOutput("plot") }}
 </div>
 <!--Second Column Baseball Player Information Output-->
-<div class="column">
+<div class="column" >
         <h4>Player Name</h4>
         {{ textOutput("player_name", inline = TRUE) }}
         <div>
@@ -80,7 +80,7 @@
         </div>
 </div>
 <!--Third Column Baseball Player Information Output-->
-<div class="column">
+<div class="column" >
         <h4>Weight</h4>
           {{ textOutput("player_weight", inline = TRUE) }}
       <div>
