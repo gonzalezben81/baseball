@@ -18,9 +18,18 @@ $("#search_button").click(function(){
     $("#stuff").show();
     $("hr").show();
     $("h3").show();
-    $("h4").show();
+    $("h4").show(900);
   });
 });
+
+
+
+//$(document).ready(function(){
+//$("#search").mouseenter(function(){
+  //alert("You entered p1!");
+  //$("#search").val("Babe Ruth");
+//});
+//});
 
 //$(document).ready(function(){
 //$("#search_button").click(function(){

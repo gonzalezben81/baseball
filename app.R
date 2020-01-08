@@ -19,11 +19,8 @@ ui <- fluidPage(
 
 # Define server logic to interact with the baseball.html file
 server <- function(input, output) {
-<<<<<<< HEAD
-   
-=======
-  
->>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
+
+
   ###Get the search results from the baseball dataset
   search_results<- eventReactive(input$search_button,{
     
@@ -33,27 +30,6 @@ server <- function(input, output) {
     
   })
   
-<<<<<<< HEAD
-  
-  ###Output the player name the first time
-  output$player_name <- renderText({
-    search_results()$NAMES
-  })
-  ###Output the player name a second time
-  output$player_name_two <- renderText({
-    search_results()$NAMES
-  })
-  ###Output the Player name a third time
-  output$player_name_three <- renderText({
-    search_results()$NAMES
-  })
-  ###Output the players birth city
-  output$player_city <- renderText({
-    search_results()$birthCity
-  })
-  ###Output the Players State
-  output$player_state <- renderText({
-=======
   ###Output the player name the first time
   observeEvent(input$search_button,{output$player_name <- renderText({
     search_results()$NAMES
@@ -76,30 +52,20 @@ server <- function(input, output) {
   })})
   ###Output the Players State
   observeEvent(input$search_button,{output$player_state <- renderText({
->>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
     state<- search_results()$birthState
     if(is.na(state)){
       return("Unknown")
     }else{
       return(state)
     }
-<<<<<<< HEAD
   })
-  ###Output the Players Country
-  output$player_country <- renderText({
-    search_results()$birthCountry
-  })
-  ###Output the Players batting stance
-  output$player_bats <- renderText({
-=======
-  })})
+
   ###Output the Players Country
   observeEvent(input$search_button,{output$player_country <- renderText({
     search_results()$birthCountry
   })})
   ###Output the Players batting stance
   observeEvent(input$search_button,{output$player_bats <- renderText({
->>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
     
     batting<- search_results()$bats
     if(batting=="R"){
@@ -109,15 +75,11 @@ server <- function(input, output) {
     }else{
       return("Both")
     }
-<<<<<<< HEAD
   })
-  ###Output the Players throwing arm
-  output$player_throws <- renderText({
-=======
+
   })})
   ###Output the Players throwing arm
   observeEvent(input$search_button,{output$player_throws <- renderText({
->>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
     throwing<- search_results()$throws
     if(throwing=="R"){
       return("Right")
@@ -126,19 +88,6 @@ server <- function(input, output) {
     }else{
       return("Both")
     }
-<<<<<<< HEAD
-  })
- ###Output the Players Height
-  output$player_height <- renderText({
-    search_results()$height
-  })
-  ###Output when the player debuted
-  output$player_debut <- renderText({
-    search_results()$debut
-  })
- ###Output the players final game
-  output$player_finalGame <- renderText({
-=======
   })})
  ###Output the Players Height
   observeEvent(input$search_button,{output$player_height <- renderText({
@@ -150,7 +99,6 @@ server <- function(input, output) {
   })})
  ###Output the players final game
   observeEvent(input$search_button,{output$player_finalGame <- renderText({
->>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
     search_results()$finalGame
   })})
   observeEvent(input$search_button,{output$player_weight <- renderText({
@@ -161,14 +109,12 @@ server <- function(input, output) {
   ###Batting Statistics
   ##Creates the interactive table returns the player's batting statistics
   batting_results <- eventReactive(input$search_button,{
-    
-<<<<<<< HEAD
+
     res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
     res<- dbFetch(res)
-=======
     # res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
     # res<- dbFetch(res)
->>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
+
 
     playerone <- search_results()$playerID
     # You can fetch all results:
@@ -225,10 +171,6 @@ server <- function(input, output) {
   })
   })
 
-<<<<<<< HEAD
-  
-=======
->>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
   # Renders a DT table of the players batting statistics
   observeEvent(input$search_button,{output$battingStats <- DT::renderDataTable({
     
@@ -236,10 +178,8 @@ server <- function(input, output) {
     datatable(batting_results())
   })
   })
-<<<<<<< HEAD
-=======
+
   
->>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
   # Renders a DT table of the players pitching statistics
   observeEvent(input$search_button,{
   output$pitching <-  renderUI({
@@ -261,9 +201,7 @@ server <- function(input, output) {
   })
   })
   
-<<<<<<< HEAD
-=======
-  
+
   # plot_data<- eventReactive(input$search_button,{
   # 
   #   res <- dbSendQuery(con, paste0("SELECT * FROM master "))
@@ -271,7 +209,6 @@ server <- function(input, output) {
   #   
   # })
 
->>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
   ###Outputs the players homeruns over their lifespan
   observeEvent(input$search_button,{output$plot <- renderPlot({
     
@@ -287,16 +224,13 @@ server <- function(input, output) {
                      Sys.sleep(0.25)
                    }
                  },env = parent.frame(n=1))
-<<<<<<< HEAD
     # res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
     res <- dbSendQuery(con, paste0("SELECT * FROM master "))
     res<- dbFetch(res)
-=======
 
     
     # res <- dbSendQuery(con, paste0("SELECT * FROM master "))
     # res<- dbFetch(res)
->>>>>>> 2edf3c98076e09ab8e050229768c9299b1973ab2
     
     getinfo <- function(name){
       playerline <- subset(res,NAMES==name)
@@ -344,6 +278,29 @@ server <- function(input, output) {
   })})
   
   
+  # 
+  # observeEvent(input$search_button,{output$map <- renderLeaflet({
+  #   
+  #   # results <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
+  #   # dbFetch(results)
+  #   
+  #   res <- dbSendQuery(con, paste0("SELECT lat,lng FROM uscities where city = '",search_results()$birthCity,"' AND state_id ='",search_results()$birthState,"'"))
+  #   res<- dbFetch(res)
+  #   
+  #   res$lat
+  #   res$lng
+  #   
+  #   # if(is.na(res$lat)||is.na(res$lng)){
+  #   #   leaflet() %>% 
+  #   #     setView(lng = 42.7006, lat = 74.9243,zoom = 10)%>%
+  #   #     addTiles()
+  #   # }else{
+  #   leaflet(res) %>% 
+  #     setView(lng = res$lng, lat = res$lat,zoom = 10)%>%
+  #     addTiles()
+  #     # }
+  # })})
+  # 
   
   ###Download Data about Baseball Player
   output$button_batting <- downloadHandler(
