@@ -18,12 +18,15 @@ ui <- fluidPage(
 )
 
 # Define server logic to interact with the baseball.html file
-server <- function(input, output) {
+server <- function(input, output,session) {
 
+
+  
+  # updateSelectizeInput(session, 'foo', choices = data, server = TRUE)
 
   ###Get the search results from the baseball dataset
   search_results<- eventReactive(input$search_button,{
-    
+    print(input$search)
     # You can fetch all results:
     res <- dbSendQuery(con, paste0("SELECT * FROM master WHERE NAMES == '",input$search,"'"))
     dbFetch(res)

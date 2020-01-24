@@ -13,45 +13,22 @@
 //window.onload = function(){
   //document.getElementById("search").value = "Babe Ruth";
 //};
+
+//$(document).ready(function(){
+//$('.flexdatalist').flexdatalist({
+  //   minLength: 1,
+    // searchIn: 'Names',
+    // data: 'names.json'
+//});
+//});
+
 $(document).ready(function(){
 $("#search_button").click(function(){
-    $("#stuff").show();
-    $("hr").show();
-    $("h3").show();
+    $("#stuff,h4,h3").show();
     $("h4").show(2000);
   });
 });
 
-
-$(document).ready(function(){
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $( "#search").autocomplete({
-      source: availableTags
-    });
-  });
 
 //$(document).ready(function(){
 //$("#search_button").click(function(){
@@ -71,11 +48,11 @@ $(document).ready(function(){
   //  $("h3").show();
 // });
 //});
-$(document).on('shiny:updateinput', function(event) {
-  if (event.name === 'search') {
-    event.value =="Babe Ruth";
-  }
-});
+//$(document).on('shiny:updateinput', function(event) {
+  //if (event.name === 'search') {
+    //event.value =="Babe Ruth";
+  //}
+//});
 
 //<!--Code to Display or Hide the Plot-->
 function myFunction() {
@@ -89,44 +66,16 @@ function myFunction() {
 
 //Show Baseball and Pitching Table Outputs once Search Button is Clicked
 //function myFunction2() {
-  //document.getElementById("bat").style.display = "block";
-  //document.getElementById("battle").style.display = "block";
-//  var x = document.getElementById("bat");
+ //document.getElementById("bat").style.display = "block";
+ //document.getElementById("battle").style.display = "block";
+  //var x = document.getElementById("bat");
   //  x.style.display = "block";
 //var y = document.getElementById("batters");
   //  y.style.display = "block";
 
 //}
 
-function autocomplete() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $( "#search" ).autocomplete({
-      source: availableTags
-    });
-  }
+
 
 
 function myFunctionalert() {
