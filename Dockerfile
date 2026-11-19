@@ -1,4 +1,3 @@
-
 FROM rocker/shiny:latest
 
 WORKDIR /srv/shiny-server
